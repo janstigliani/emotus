@@ -1,0 +1,42 @@
+[
+    {
+        "id": "user1 - 1742977800560",
+        "value": 4,
+        "note": "sono molto felice oggi, ho accarezzato un cane nero",
+        "creationDate": 1742977800560,
+        "location": {
+            "lat": 44.410829850427454, 
+            "log": 8.932884544410793
+        }
+    },
+    {
+        "id": "user1 - 1742978144200",
+        "value": 3,
+        "note": "pippo franco mi ha salutato",
+        "creationDate": 1742978144200,
+        "location": {
+            "lat": 44.410829850427454, 
+            "log": 8.932884544410793
+        }
+    },
+    {
+        "id": "user1 - 1742978158056",
+        "value": 2,
+        "note": "non ho capito i components",
+        "creationDate": 1742978158056,
+        "location": {
+            "lat": 44.410829850427454, 
+            "log": 8.932884544410793
+        }
+    },
+    {
+        "id": "user1 - 1742978179991",
+        "value": 1,
+        "note": "faccio schifo a programmare",
+        "creationDate": 1742978179991,
+        "location": {
+            "lat": 44.410829850427454, 
+            "log": 8.932884544410793
+        }
+    }
+]
