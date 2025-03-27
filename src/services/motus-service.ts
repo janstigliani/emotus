@@ -16,7 +16,6 @@ export default class MotusService {
             this.moti = await this.getMotiFromJson()
             this.saveMoti();
         }
-
         return this.moti;
     }
 

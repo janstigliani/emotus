@@ -46,7 +46,7 @@ export default class SuperList extends HTMLElement {
             height: 64px;
             width: 64px;
             border-radius: 50%;
-            position: absolute;
+            position: fixed;
             bottom: 0px;
             right:0px;
             border: none;
@@ -79,7 +79,7 @@ export default class SuperList extends HTMLElement {
         for (let i = 0; i  < this.moti.length; i++) {
             const motus = this.moti[i];
             const card: MotusCard= document.createElement('motus-card') as MotusCard;
-            card.setAttribute("selected-motus", JSON.stringify(motus))
+            card.setAttribute("selected-motus", JSON.stringify(motus));
             main.appendChild(card);
         }
         container.appendChild(main);
@@ -111,7 +111,7 @@ export default class SuperList extends HTMLElement {
         const id = "user1 - "+creationDate;
         const location = {
             "lat": 44.410829850427454, 
-            "log": 8.932884544410793
+            "lng": 8.932884544410793
         }
 
         const motus: Motus = {

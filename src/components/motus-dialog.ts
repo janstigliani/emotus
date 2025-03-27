@@ -1,3 +1,5 @@
+import { Motus } from "../models/motus";
+
 export default class SuperDialog extends HTMLElement {
     dialog: HTMLDialogElement
     constructor() {
@@ -53,13 +55,13 @@ export default class SuperDialog extends HTMLElement {
                 <input type="radio" name="emoLevel" id="Dejected" value="1">
                 <label for="Dejected">Dejected😵</label>
                 <input type="radio" name="emoLevel" id="Puzzled" value="2">
-                <label for="Puzzled">Puzzled😑</label>
+                <label for="Puzzled">Puzzled😕</label>
                 <input type="radio" name="emoLevel" id="Happy" value="3">
                 <label for="Happy">Happy🙂</label>
                 <input type="radio" name="emoLevel" id="Ecstatic" value="4">
                 <label for="Ecstatic">Ecstatic🥳</label>
             </div>
-            <input class="summary" type="text" name="summary" id="summary" maxlength="140" placeholder="140 char max">
+            <textarea name="summary" id="summary" maxlength="140" placeholder="how do you feel?(140 char max)" style="height: 80px;width: 600px; "></textarea>
         </form>
         `;
         const cancelBtn = document.createElement('button');
@@ -84,14 +86,14 @@ export default class SuperDialog extends HTMLElement {
         const form = this.shadowRoot!.getElementById('form') as HTMLFormElement | null;
         if (form) {
             const data = new FormData(form);
-            const motus = {
-                "id": `user1 - ${creationDate}`,
-                "value": Number(data.get("emoLevel")),
-                "note": data.get("summary"),
-                "creationDate": creationDate,
-                "location": {
-                    "lat": 44.410829850427454,
-                    "log": 8.932884544410793
+            const motus:Motus = {
+                id: `user1 - ${creationDate}`,
+                value: Number(data.get("emoLevel")),
+                note: data.get("summary") as string,
+                creationDate: creationDate,
+                location: {
+                    lat: 44.410829850427454,
+                    lng: 8.932884544410793
                 }
             }
     
@@ -104,8 +106,14 @@ export default class SuperDialog extends HTMLElement {
        
     }
 
+    setupForm(){
+        const form = this.shadowRoot!.getElementById('form') as HTMLFormElement;
+        form.reset();
+    }
+
     addMotus() {
         this.dialog.style.display = 'block'; // Make it visible before opening
+        this.setupForm()
         this.dialog.showModal();
     }
 }

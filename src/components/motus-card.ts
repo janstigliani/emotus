@@ -89,15 +89,28 @@ export default class MotusCard extends HTMLElement{
                 <span class="note">
                     ${this.motus.note}
                 </span>
-                <div class="btn">
+                <div class="btn" id="btn-div">
                     <button class="cancel">
                         X
                     </button>
                 </div>
             </div>
         `;
+        // const divBtn = document.getElementById("btn-div");
+        // const cancelBtn = document.createElement("button");
+        // cancelBtn.innerText="X";
+        // cancelBtn.classList.add("cancel");
+        // cancelBtn.addEventListener("click", () => this.deleteMoti());
+        // divBtn!.appendChild(cancelBtn);
+
         this.shadowRoot!.appendChild(mainDiv);
     }
+
+    // deleteMoti() {
+    //     const dialogConfirm = document.createElement("dialog");
+    //     dialogConfirm.nodeValue= "sei sicuro di voler eliminare la nota?";
+    //     const confirm
+    // }
 
     fromValueToEmoji(value:Number) {
         switch (value) {
@@ -106,7 +119,7 @@ export default class MotusCard extends HTMLElement{
             case 1:
                 return "😵";
             case 2:
-                return "😑";
+                return "😕";
             case 3:
                 return "🙂";
             default:

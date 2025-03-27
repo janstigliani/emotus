@@ -3,10 +3,10 @@ export interface Motus {
     value: number
     note: string
     creationDate: number
-    location: Location
+    location?: Location
   }
   
   export interface Location {
     lat: number
-    log: number
+    lng: number
   }
