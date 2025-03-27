@@ -1,13 +1,49 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
 
-
-span{
+h1 {
+    font-size: 4rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
-    font-size: 1rem;
-    font-weight: 200;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
 }
 
 button{
+    min-width: 30px;
+    min-height: 12px;
     padding: 2px;
-
+    font-size: 1rem;
+    background-color: rgba(62, 119, 135, 0.712);
+    margin-bottom: 20px;
 }
 
+button:hover{
+    background-color: rgba(86, 168, 191, 0.712);
+}
+
+
+
+footer{
+    position: sticky;
+    bottom: 0;
+}
+
+main{
+    min-height: 90vh;
+}
+
+.mother{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

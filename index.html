@@ -7,16 +7,24 @@
   </head>
   <body>
 
-    <header></header>
+    <header class="mother">
+      <h1>E-Motus</h1>
+      <nav>
+        <button>ab</button>
+        <button>cd</button>
+        <button>ef</button>
+      </nav>
+    </header>
 
     <main>
       <motus-list></motus-list>
-      <div id="main-div"></div>
+      <super-dialog id="motus-dialog"></super-dialog>
     </main>
 
-    <footer></footer>
+    <footer>JS production 2025</footer>
+    <script type="module" src="src/components/motus-dialog.ts"></script> 
     <script type="module" src="src/components/motus-list.ts"></script>
-    <script type="module" src="src/components/motus-card"></script>
+    <script type="module" src="src/components/motus-card.ts"></script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -1,22 +1,32 @@
 import { Motus } from "../models/motus";
 import MotusService from "../services/motus-service";
 import MotusCard from "./motus-card";
+import SuperDialog from "./motus-dialog";
 
 export default class SuperList extends HTMLElement {
 
-    mservice: MotusService;
+    mService: MotusService;
     moti: Motus[]
 
     constructor() {
         super()
         this.attachShadow({mode: 'open'});
-        this.mservice = new MotusService();
+        this.mService = new MotusService();
         this.moti = [];
     }
 
     async connectedCallback(){
 
-        this.moti = await this.mservice.loadMoti();
+        this.moti = await this.mService.loadMoti();
+
+        const sDialog = document.getElementById('motus-dialog') as SuperDialog;
+        sDialog.addEventListener('motus-added', (event) => {
+            const customEvent = event as CustomEvent<Motus>; // Explicitly cast
+            const newMotus: Motus = customEvent.detail;
+            this.moti = this.mService.addMoti(newMotus);
+            this.render();
+        });
+
         this.styling();
         this.render();
     }
@@ -29,6 +39,7 @@ export default class SuperList extends HTMLElement {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 gap: 2rem;
+                min-height: 50vh;
             }
 
             .add-btn{
@@ -36,15 +47,16 @@ export default class SuperList extends HTMLElement {
             width: 64px;
             border-radius: 50%;
             position: absolute;
-            bottom: 20px;
-            right: 20px;
+            bottom: 0px;
+            right:0px;
             border: none;
-            font-size: 1rem;
-            background-color: blue;
+            font-size: 1.4rem;
+            background-color: rgb(218, 192, 24);
             }
 
             .add-btn:hover{
-            backgroud-color: white;
+                font-size:1.6rem;
+                background-color: rgba(218, 192, 24, 0.712);
             }
         `
         this.shadowRoot!.appendChild(style);
@@ -75,7 +87,14 @@ export default class SuperList extends HTMLElement {
         const addBtn = document.createElement("button");
         addBtn.classList.add("add-btn");
         addBtn.appendChild(document.createTextNode("➕"));
-        addBtn.addEventListener("click", () => this.addRandomMotus())
+        addBtn.addEventListener("click", () => {
+            const sDialog = document.querySelector('super-dialog') as SuperDialog;
+            if (sDialog) {
+                sDialog.addMotus();
+            } else {
+                console.log("SuperDialog element not found!");
+            }
+        });
         container.appendChild(addBtn);
     }
 
@@ -103,7 +122,8 @@ export default class SuperList extends HTMLElement {
             "location": location
         }
 
-        console.log(motus);
+        this.mService.addMoti(motus);
+        this.render()
     }
 }
 customElements.define('motus-list', SuperList);

@@ -25,21 +25,22 @@ export default class MotusCard extends HTMLElement{
     styling(){
         const style = document.createElement('style');
         style.innerText = `
-            .card{
-                border-radius: 4rem;
+            .card {
+                border-radius: 2rem;
                 box-shadow: 8px 13px 38px 0px rgba(0,0,0,0.1);
                 padding: 8px;
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
+                height: 150px
             }
 
-            .emoji{
+            .emoji {
                 font-size: 3rem;
                 text-align: center;
             }
 
-            .info-container{
+            .info-container {
                 display: flex;
                 flex-direction: column;
                 gap: 16px;
@@ -48,12 +49,29 @@ export default class MotusCard extends HTMLElement{
                 width: 80%;
             }
 
-            .btn{
+            .btn {
                 display: flex;
-                justify-content: center;
-                width: 80%;
+                justify-content: flex-end;
+                width: 95%;
             }
 
+            .cancel {
+                background-color: transparent;
+                font-size: 1.3rem;
+                border: none;
+            }
+
+            .cancel:hover {
+                font-size: 1.2rem;
+                color: rgba(0, 0, 0, 0.61);
+            }
+
+            .note{
+                height: 60px;
+                width: 100%;
+                overflow: auto;
+                text-overflow:ellipsis;
+            }
         `
         this.shadowRoot!.appendChild(style);
     }
@@ -68,12 +86,12 @@ export default class MotusCard extends HTMLElement{
                     ${this.fromTimeStampToDate(this.motus.creationDate)}
                 </span>
                 <div class="divider"></div>
-                <span>
+                <span class="note">
                     ${this.motus.note}
                 </span>
                 <div class="btn">
-                    <button>
-                        cancella
+                    <button class="cancel">
+                        X
                     </button>
                 </div>
             </div>
