@@ -86,27 +86,16 @@ export default class SuperDialog extends HTMLElement {
         const form = this.shadowRoot!.getElementById('form') as HTMLFormElement | null;
         if (form) {
             const data = new FormData(form);
-            const motus:Motus = {
-                id: `user1 - ${creationDate}`,
-                value: Number(data.get("emoLevel")),
-                note: data.get("summary") as string,
-                creationDate: creationDate,
-                location: {
-                    lat: 44.410829850427454,
-                    lng: 8.932884544410793
-                }
-            }
-    
+            const motus: Motus = new Motus(`user1 - ${creationDate}`, Number(data.get("emoLevel")), data.get("summary") as string, creationDate)
             const event = new CustomEvent('motus-added', { detail: motus })
             this.dispatchEvent(event);
-    
             this.dialog.close();
             this.dialog.style.display = 'none'; // Hide after submitting
         }
-       
     }
 
-    setupForm(){
+
+    setupForm() {
         const form = this.shadowRoot!.getElementById('form') as HTMLFormElement;
         form.reset();
     }

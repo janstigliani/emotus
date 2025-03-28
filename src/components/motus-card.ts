@@ -14,7 +14,17 @@ export default class MotusCard extends HTMLElement{
         //     return JSON.parse(motusStr);
         // }
         // return null;
-        return JSON.parse(this.getAttribute(`selected-motus`)!)
+
+    //     const motusStr = this.getAttribute('selected-motus');
+    // if (!motusStr) {
+    //     throw new Error("selected-motus attribute is missing on motus-card");
+    // }
+    // const moti = JSON.parse(motusStr!);
+    // return new Motus(moti.id, moti.value, moti.note, moti.creationDate);
+
+        const moti = JSON.parse(this.getAttribute(`selected-motus`)!);
+        
+        return new Motus(moti.id, moti.value, moti.note, moti.creationDate);
     }
 
     connectedCallback(){
@@ -80,10 +90,10 @@ export default class MotusCard extends HTMLElement{
         const mainDiv = document.createElement('div');
         mainDiv.classList.add("card");
         mainDiv.innerHTML = `
-            <span class="emoji">${this.fromValueToEmoji(this.motus.value)}</span>
+            <span class="emoji">${this.motus.fromValueToEmoji(this.motus.value)}</span>
             <div class="info-container">
                 <span class="date">
-                    ${this.fromTimeStampToDate(this.motus.creationDate)}
+                    ${this.motus.fromTimeStampToDateString(this.motus.creationDate!)}
                 </span>
                 <div class="divider"></div>
                 <span class="note">
@@ -112,24 +122,24 @@ export default class MotusCard extends HTMLElement{
     //     const confirm
     // }
 
-    fromValueToEmoji(value:Number) {
-        switch (value) {
-            case 0:
-                return "🤬";
-            case 1:
-                return "😵";
-            case 2:
-                return "😕";
-            case 3:
-                return "🙂";
-            default:
-                return "🥳";
-        }
-    }
+    // fromValueToEmoji(value:Number) {
+    //     switch (value) {
+    //         case 0:
+    //             return "🤬";
+    //         case 1:
+    //             return "😵";
+    //         case 2:
+    //             return "😕";
+    //         case 3:
+    //             return "🙂";
+    //         default:
+    //             return "🥳";
+    //     }
+    // }
 
-    fromTimeStampToDate(timeStamp: number) {
-        const date = new Date(timeStamp);
-        return date.toDateString() + " - " + date.toLocaleTimeString();
-    }
+    // fromTimeStampToDate(timeStamp: number) {
+    //     const date = new Date(timeStamp);
+    //     return date.toDateString() + " - " + date.toLocaleTimeString();
+    // }
 }
 customElements.define('motus-card', MotusCard)

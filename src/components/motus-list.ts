@@ -22,7 +22,7 @@ export default class SuperList extends HTMLElement {
         const sDialog = document.getElementById('motus-dialog') as SuperDialog;
         sDialog.addEventListener('motus-added', (event) => {
             const customEvent = event as CustomEvent<Motus>; // Explicitly cast
-            const newMotus: Motus = customEvent.detail;
+            const newMotus:Motus = customEvent.detail;
             this.moti = this.mService.addMoti(newMotus);
             this.render();
         });
@@ -78,8 +78,10 @@ export default class SuperList extends HTMLElement {
     
         for (let i = 0; i  < this.moti.length; i++) {
             const motus = this.moti[i];
+            console.log(this.moti);
             const card: MotusCard= document.createElement('motus-card') as MotusCard;
-            card.setAttribute("selected-motus", JSON.stringify(motus));
+            console.log("guarda questo", motus)
+            card.setAttribute("selected-motus", JSON.stringify(motus)); //non riesce a settare l'attributo per il getter
             main.appendChild(card);
         }
         container.appendChild(main);
@@ -98,32 +100,32 @@ export default class SuperList extends HTMLElement {
         container.appendChild(addBtn);
     }
 
-    addRandomMotus() {
-        const value = Math.floor(Math.random()*5);
-        let charArr = [];
-        for (let i = 0; i < Math.floor((Math.random()*110)+30); i++) {
-            const char = String.fromCharCode(Math.floor(Math.random()*500+100));
-            charArr.push(char);
-        }
-        const note = charArr.join("")
-        const date = new Date();
-        const creationDate = date.getTime();
-        const id = "user1 - "+creationDate;
-        const location = {
-            "lat": 44.410829850427454, 
-            "lng": 8.932884544410793
-        }
+    // addRandomMotus() {
+    //     const value = Math.floor(Math.random()*5);
+    //     let charArr = [];
+    //     for (let i = 0; i < Math.floor((Math.random()*110)+30); i++) {
+    //         const char = String.fromCharCode(Math.floor(Math.random()*500+100));
+    //         charArr.push(char);
+    //     }
+    //     const note = charArr.join("")
+    //     const date = new Date();
+    //     const creationDate = date.getTime();
+    //     const id = "user1 - "+creationDate;
+    //     const location = {
+    //         "lat": 44.410829850427454, 
+    //         "lng": 8.932884544410793
+    //     }
 
-        const motus: Motus = {
-            "id": id,
-            "value": value,
-            "note": note,
-            "creationDate": creationDate,
-            "location": location
-        }
+    //     const motus: Motus = { //da riconvertire in classe rispetto ad interfaccia
+    //         "id": id,
+    //         "value": value,
+    //         "note": note,
+    //         "creationDate": creationDate,
+    //         "location": location
+    //     }
 
-        this.mService.addMoti(motus);
-        this.render()
-    }
+    //     this.mService.addMoti(motus);
+    //     this.render()
+    // }
 }
 customElements.define('motus-list', SuperList);

@@ -1,8 +1,14 @@
+import MotusService from "../services/motus-service";
+import MotusCard from "./motus-card";
+
 export default class MotusBar extends HTMLElement{
+
+    mService: MotusService;
 
     constructor(){
         super();
         this.attachShadow({mode: 'open'});
+        this.mService = new MotusService();
     }
 
     connectedCallback(){
@@ -22,6 +28,8 @@ export default class MotusBar extends HTMLElement{
             .bar{
                 border-bottom: solid;
                 margin-bottom: 20px;
+                display; flex;
+                gap:20px
             }
         `
         this.shadowRoot!.appendChild(style);
@@ -38,6 +46,16 @@ export default class MotusBar extends HTMLElement{
                 E-MOTUS
             </span>
         `;
+        const sortBtn= document.createElement("button");
+        sortBtn.classList.add("sort-btn");
+        sortBtn.innerText=`📶`
+        sortBtn.addEventListener("click", () => {
+            this.mService.sortMoti();
+            const mCard = new MotusCard();
+            mCard.render();
+        })
+        mainDiv.appendChild(sortBtn);
+
         this.shadowRoot!.appendChild(mainDiv);
     }
 
