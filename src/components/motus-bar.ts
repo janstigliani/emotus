@@ -51,8 +51,9 @@ export default class MotusBar extends HTMLElement{
         sortBtn.innerText=`📶`
         sortBtn.addEventListener("click", () => {
             this.mService.sortMoti();
-            const mCard = new MotusCard();
-            mCard.render();
+            //creare un evento per comunicare alla motus list di renderizzare again
+            // const mCard = new MotusCard();
+            // mCard.render();
         })
         mainDiv.appendChild(sortBtn);
 

@@ -80,7 +80,7 @@ export default class SuperList extends HTMLElement {
             const motus = this.moti[i];
             console.log(this.moti);
             const card: MotusCard= document.createElement('motus-card') as MotusCard;
-            console.log("guarda questo", motus)
+            console.log("guarda questo", motus);
             card.setAttribute("selected-motus", JSON.stringify(motus)); //non riesce a settare l'attributo per il getter
             main.appendChild(card);
         }

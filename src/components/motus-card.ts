@@ -21,7 +21,7 @@ export default class MotusCard extends HTMLElement{
     // }
     // const moti = JSON.parse(motusStr!);
     // return new Motus(moti.id, moti.value, moti.note, moti.creationDate);
-
+        
         const moti = JSON.parse(this.getAttribute(`selected-motus`)!);
         
         return new Motus(moti.id, moti.value, moti.note, moti.creationDate);
